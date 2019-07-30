@@ -19,7 +19,7 @@ public class ProductDao {
 		// BeanPropertyRowMapper uses the rows from the SQL result create
 		// new Room objects and fill in the values by calling the setters.
 		// Use .query for SQL SELECT statements.
-		String sql = "SELECT * FROM Product";
+		String sql = "SELECT * FROM Products";
 		return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class));
 	}
 	

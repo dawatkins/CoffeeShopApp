@@ -19,7 +19,7 @@
 				</tr>
 				<tr>
 					<th scope="row">email</th>
-					<td><input type="email" name="email" /></td>
+					<td><input type="text" name="email" /></td>
 				</tr>
 				<tr>
 					<th scope="row">Password</th>

@@ -14,7 +14,7 @@ public class UsersDao {
 	private JdbcTemplate jdbc;
 	
 	public void create(Users user) {
-		String sql = "INSERT INTO users	(username, email, password) VALUES(?, ?, ?)";
+		String sql = "INSERT INTO Users	(name, email, password) VALUES(?, ?, ?)";
 		jdbc.update(sql, user.getName(), user.getEmail(), user.getPassword());
 	}
 	

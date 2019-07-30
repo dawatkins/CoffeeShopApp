@@ -30,8 +30,8 @@ public class CoffeeShopController {
 	
 	@RequestMapping("/products")
 	public ModelAndView showProducts() {
-		List<Product> products = productdao.findAll();
-		return new ModelAndView("products");
+		List<Product> product = productdao.findAll();
+		return new ModelAndView("products", "products", product);
 	}
 	
 	@RequestMapping("/register")
