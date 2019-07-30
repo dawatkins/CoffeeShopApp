@@ -7,6 +7,7 @@
 <title>Registration Results</title>
 </head>
 <body>
-	<p>Thank you ${ name } for registering!</p>
+	<p>Thank you ${ users.name } for registering!</p>
+	<p><a href="/">Home</a></p>
 </body>
 </html>

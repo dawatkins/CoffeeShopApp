@@ -40,10 +40,16 @@ public class CoffeeShopController {
 		return mav;
 	}
 	
-	@PostMapping("/register")
-	public ModelAndView addRegister(Users user) {
-		userdao.create(user);
-		return new ModelAndView("redirect:/");
+//	@PostMapping("/register")
+//	public ModelAndView addRegister(Users user) {
+//		userdao.create(user);
+//		return new ModelAndView("redirect:/");
+//	}
+	
+	@PostMapping("/register-results")
+	public ModelAndView printResults(Users name) {
+		userdao.create(name);
+		return new ModelAndView("register-results");
 	}
 	
 //	@PostMapping("/register")

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Registration Page</h1>
-	<form method="post" action="/register">
+	<form method="post" action="/register-results">
 
 		<fieldset>
 			<legend>Contact Info</legend>
