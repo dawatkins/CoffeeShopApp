@@ -11,7 +11,7 @@
 <body>
 	<header>
 		<span>
-			Current User: ${ preference.name }
+			Current User: ${ user.name }
 		</span>
 	</header>
 	<div class="container">

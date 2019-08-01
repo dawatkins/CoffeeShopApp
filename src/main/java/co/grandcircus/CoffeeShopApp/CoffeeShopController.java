@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.CoffeeShopApp.dao.ProductDao;
+import co.grandcircus.CoffeeShopApp.dao.UserRepository;
 import co.grandcircus.CoffeeShopApp.dao.UsersDao;
 import co.grandcircus.CoffeeShopApp.entity.Product;
 import co.grandcircus.CoffeeShopApp.entity.Users;
@@ -21,6 +22,9 @@ import co.grandcircus.CoffeeShopApp.entity.Users;
 
 @Controller
 public class CoffeeShopController {
+	
+	@Autowired
+	private UserRepository dao;
 	
 	@Autowired
 	private UsersDao userdao;
@@ -54,7 +58,7 @@ public class CoffeeShopController {
 	@PostMapping("/register-results")
 	public ModelAndView printResults(Users name, HttpSession session) {
 		userdao.create(name);
-		session.setAttribute("preference", name);
+		session.setAttribute("user", name);
 		return new ModelAndView("register-results");
 	}
 	
@@ -90,6 +94,42 @@ public class CoffeeShopController {
 	public ModelAndView submitEditForm(Product item) {
 		productdao.update(item);
 		return new ModelAndView("redirect:/products");
+	}
+	
+	@RequestMapping("/login")
+	public ModelAndView showLogin() {
+		return new ModelAndView("login-form");
+	}
+	
+
+	@PostMapping("/login")
+	public ModelAndView submitLogin(
+		@RequestParam("email") String email,
+		@RequestParam("password") String password,
+		HttpSession session
+			) {
+		
+		// check the database for the user that matches both email and password
+		Users user = dao.findByEmailAndPassword(email, password);
+		System.out.println(user);
+		
+		// if not found, show the form again with error message
+		if (user == null) {
+			return new ModelAndView("login-form", "message", "Incorrect username or password.");
+		}
+		
+		// "login" just means adding the user to the session
+		session.setAttribute("user", user);
+		
+		return new ModelAndView("redirect:/");
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		// This clears the session and starts a brand new clean one.
+		session.invalidate();
+		
+		return new ModelAndView("redirect:/");
 	}
 	
 }

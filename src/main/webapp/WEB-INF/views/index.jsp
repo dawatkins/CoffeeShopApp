@@ -10,10 +10,19 @@
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/spacelab/bootstrap.min.css" />
 </head>
 <body>
-	<header> <span> Current User: ${ preference.name } </span> </header>
+	<header> <span> Current User: ${ user.name } </span> </header>
 	<div class="container">
 		<h1>Welcome to the GC Coffee Shop!</h1>
 		<p><a href="/products"><button>List of products!</button></a> <a href="/register"><button>Click to Register</button></a></p>
+		<p>
+		<c:if test="${ empty user }">
+			<a href="/login"><button>Log in</button></a>
+		</c:if>
+		<c:if test="${ not empty user }">
+			Welcome ${ user.name }
+			<a href="/logout"><button>Log out</button></a>
+		</c:if>
+		</p>
 	</div>
 </body>
 </html>
